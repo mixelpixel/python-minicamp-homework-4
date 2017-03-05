@@ -31,7 +31,7 @@
     
 5. Setup your virtual environment and build a simple Flask API with three routes:
 
-	* (`/`) - This route should return your base HTML file.
+	* (`/`) - This route should return your base HTML file.  
     5.1) `export FLASK_APP=simpleFlaskAPI.py`  
     5.2) `flask run`  
     5.3) NOTE: not invoking debug (yet)
