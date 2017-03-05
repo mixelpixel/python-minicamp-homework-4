@@ -14,7 +14,7 @@
 
  3.1) added .gitignore  
  3.2) `virtualenv -p python3 venv`  
- 3.3) create requirements.txt file with Flask and requests `echo -e "Flask\nrequests" > requirements.txt` 
+ 3.3) create requirements.txt file with Flask and requests `echo -e "Flask\nrequests" > requirements.txt`   
  3.4) `venv/bin/pip install -r requirements.txt`  
  3.5) activate venv with `source venv/bin/activate`  
 
