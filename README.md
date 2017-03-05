@@ -12,11 +12,11 @@
 
 3. Fork [this](https://github.com/SunJieMing/python-minicamp-homework-4) repo and clone it to your computer using the terminal command `git clone <url>`.  Navigate into the cloned folder and build your homework project there.
 
-3.1) added .gitignore
-3.2) `virtualenv -p python3 venv`
-3.3) create requirements.txt file with Flask and requests
-3.4) `venv/bin/pip install -r requirements.txt`
-3.5) activate venv with `source venv/bin/activate`
+ 3.1) added .gitignore  
+ 3.2) `virtualenv -p python3 venv`  
+ 3.3) create requirements.txt file with Flask and requests  
+ 3.4) `venv/bin/pip install -r requirements.txt`  
+ 3.5) activate venv with `source venv/bin/activate`  
 
 4. As you make changes and decide to commit your code follow these commands:
 
