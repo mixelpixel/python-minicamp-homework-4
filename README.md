@@ -32,6 +32,10 @@
 5. Setup your virtual environment and build a simple Flask API with three routes:
 
 	* (`/`) - This route should return your base HTML file.
+    5.1) `export FLASK_APP=simpleFlaskAPI.py`  
+    5.2) `flask run`  
+    5.3) NOTE: not invoking debug (yet)
+
     * (`/movie`) - This route should accept a POST request and save some info about a movie to your sqlite database.
     * (`/movies`) - This route will return the JSON for all movies in your database.
     * You can verify that you are successfully adding data by uploading your database file [here](http://inloop.github.io/sqlite-viewer/).
