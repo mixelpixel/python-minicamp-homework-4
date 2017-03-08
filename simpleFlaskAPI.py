@@ -1,6 +1,7 @@
 # https://youtu.be/KucNCe_vgcU
+# SQLite Viewer: http://inloop.github.io/sqlite-viewer/
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import sqlite3
 
 app = Flask(__name__)
@@ -51,6 +52,21 @@ def add_movie_function():
     finally:
         connection.close()
         return message
+
+@app.route('/movies', methods = ['GET'])
+def list_all_movies():
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+    try:
+        title = (request.args.get('title'),)
+        cursor.execute('SELECT * FROM films')
+        connection.commit()
+        search_result = jsonify(cursor.fetchall())
+    except:
+        search_result = 'An error occured getting all the film titles'
+    finally:
+        connection.close()
+        return search_result
 
 app.run(debug = True)
 # if __name__ == '__main__':
