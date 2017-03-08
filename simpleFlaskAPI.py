@@ -7,17 +7,14 @@ app = Flask(__name__)
 
 # The following is as opposed to externally creating an initdb.py script and
 # manually entering `python3 initdb.py` in a python3 interpreter
-# e.g.
+# e.g. the initdb.py file would read:
 # import sqlite3
 # connection = sqlite3.connect('database.db')
-# print('We\'re connected!')
 # connection.execute('CREATE TABLE movies (title TEXT, rating INTEGER)')
-# print('Table created!')
 # connection.close()
 ####################
-# This is also a nice solution to manually creating the database using an
-# an external initdb.py script:
-#
+# This is also a nice alternative to manually creating the database using
+# the aboove external initdb.py script with the following code here:
 # from os.path import isfile
 # @app.route('/')
 # def index():
@@ -28,13 +25,10 @@ app = Flask(__name__)
 #
 # connecting application to the database
 connection = sqlite3.connect('database.db')
-print('Database opened successfully')
-# execute database commands - NOTE: the if not exists check
+# execute database commands - note the if not exists check, nice!
 connection.execute('CREATE TABLE IF NOT EXISTS movies (title TEXT, rating INTEGER)')
-print('Table created successfully')
 # close database connection
 connection.close()
-print('database closed')
 
 @app.route('/')
 def index():
@@ -42,20 +36,14 @@ def index():
 
 @app.route('/movie_added', methods = ['POST'])
 def movie_added():
-    connection = sqlite3.connect('database.db')
-    cursor = connection.cursor()
-    print("1>>>HELLO????")
-
-    title = request.form['title']
-    print("2>>>HELLO????")
-    rating = request.form['rating']
-    print("3>>>HELLO????")
+    connection  = sqlite3.connect('database.db')
+    cursor      = connection.cursor()
+    title       = request.form['title']
+    rating      = request.form['rating']
     try:
-        print('a')
-        cursor.execute('INSERT INTO movies (title, rating) VALUES (?, ?)', (title, rating))
-        print('b')
+        query   = 'INSERT INTO movies (title, rating) VALUES (?, ?)'
+        cursor.execute(query, (title, rating))
         connection.commit()
-        print('c')
         message = 'Successfully inserted title and rating data into movies table!'
     except:
         connection.rollback()
