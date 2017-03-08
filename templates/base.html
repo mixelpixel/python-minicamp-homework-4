@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MOST AWESOMEST WEBPAGE EVER!</title>
+    <title>THE MOST AWESOMEST WEBPAGE EVER!</title>
+    <!-- this keeps the favico-ico error from popping up: -->
+    <link rel="shortcut icon" href="#"></link>
   </head>
   <body>
     <img src="/static/ComputerRage.gif">
+    <h1>Movies</h1>
+    <form action='{{ url_for("movie_added") }}' method='POST'>
+    <!-- The above version allows for the path of addrecord to change -->
+    <!-- <form action='/movie_added' method='POST'> -->
+      Movie Title:
+      <input type="text" name="title"></input><br>
+      Rate from 1 to 10:
+      <input type="number" name="rating" min="1" max="10"></input>
+      <input type="submit" value="Submit"></input>
+      <input type="reset" value="Reset"></input>
+    </form>
   </body>
 </html>
