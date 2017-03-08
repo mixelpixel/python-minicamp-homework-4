@@ -26,7 +26,7 @@ app = Flask(__name__)
 # connecting application to the database
 connection = sqlite3.connect('database.db')
 # execute database commands - note the if not exists check, nice!
-connection.execute('CREATE TABLE IF NOT EXISTS movies (title TEXT, rating INTEGER)')
+connection.execute('CREATE TABLE IF NOT EXISTS films (title TEXT, rating INTEGER)')
 # close database connection
 connection.close()
 
@@ -34,14 +34,14 @@ connection.close()
 def index():
     return render_template("base.html")
 
-@app.route('/movie_added', methods = ['POST'])
-def movie_added():
+@app.route('/movie', methods = ['POST'])
+def add_movie_function():
     connection  = sqlite3.connect('database.db')
     cursor      = connection.cursor()
     title       = request.form['title']
     rating      = request.form['rating']
     try:
-        query   = 'INSERT INTO movies (title, rating) VALUES (?, ?)'
+        query   = 'INSERT INTO films (title, rating) VALUES (?, ?)'
         cursor.execute(query, (title, rating))
         connection.commit()
         message = 'Successfully inserted title and rating data into movies table!'
