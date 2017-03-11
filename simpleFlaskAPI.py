@@ -58,7 +58,6 @@ def list_all_movies():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     try:
-        title = (request.args.get('title'),)
         cursor.execute('SELECT * FROM films')
         connection.commit()
         search_result = jsonify(cursor.fetchall())
@@ -68,6 +67,60 @@ def list_all_movies():
         connection.close()
         return search_result
 
+#######################################
+# # While getting an error upon exiting the flask server
+# # I tried the following to see if the error was the result
+# # of how I was closing out connections
+#
+# @app.route('/movie', methods = ['POST'])
+# def add_movie_function():
+#     data = None
+#     try:
+#         connection  = sqlite3.connect('database.db')
+#         with connection:
+#             cursor      = connection.cursor()
+#             title       = request.form['title']
+#             rating      = request.form['rating']
+#             query   = 'INSERT INTO films (title, rating) VALUES (?, ?)'
+#             data = cursor.execute(query, (title, rating))
+#             connection.commit()
+#             message = 'Successfully inserted title and rating data into movies table!'
+#     except sqlite3.Error as e:
+#         if connection:
+#             connection.rollback()
+#             message = 'There was an issue with inserting data into the movies table :('
+#         raise ValueError('sqlite3: {}'.format(e))
+#     finally:
+#         if connection:
+#             connection.close()
+#             print(message)
+#         if data:
+#             print(data)
+#             return message
+#
+# @app.route('/movies', methods = ['GET'])
+# def list_all_movies():
+#     data = None
+#     try:
+#         connection = sqlite3.connect('database.db')
+#         with connection:
+#             cursor = connection.cursor()
+#             data = cursor.execute('SELECT * FROM films')
+#             connection.commit()
+#             search_result = jsonify(cursor.fetchall())
+#     except sqlite3.Error as e:
+#         if connection:
+#             search_result = 'An error occured getting all the film titles'
+#         raise ValueError('sqlite3: {}'.format(e))
+#     finally:
+#         if connection:
+#             connection.close()
+#             print(search_result)
+#         if data:
+#             print(data)
+#             return search_result
+
 app.run(debug = True)
 # if __name__ == '__main__':
+#     print('__name__ == "__main__"')
 #     app.run(debug = True)
