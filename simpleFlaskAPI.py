@@ -65,6 +65,7 @@ def list_all_movies():
 #####################################
 # # Looks like I don't need all this try/except/finally
 # # Also not sure what connection.commit() is for?
+# # Also not sure why methods = ['GET'] isn't used?
 #
 # @app.route('/movies', methods = ['GET'])
 # def list_all_movies():
