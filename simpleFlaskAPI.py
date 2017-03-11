@@ -53,7 +53,7 @@ def add_movie_function():
         connection.close()
         return message
 
-@app.route('/movies', methods = ['GET'])
+@app.route('/movies')
 def list_all_movies():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
