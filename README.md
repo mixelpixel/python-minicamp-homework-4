@@ -35,6 +35,10 @@
     5.1) `export FLASK_APP=simpleFlaskAPI.py`  
     5.2) `flask run`  
     5.3) NOTE: not invoking debug (yet)
+    5.4) Invoking `app.run(debug = True)` and using `flask run` with `export FLASK_APP...` 
+         I find that I get an OS Error [errno 9] when I CTRL+C exit from the Flaks server.
+         Not sure why this is happening and am getting little feedback. Possibly a bug?
+         http://stackoverflow.com/q/42681764/5225057
 
     * (`/movie`) - This route should accept a POST request and save some info about a movie to your sqlite database.
     * (`/movies`) - This route will return the JSON for all movies in your database.
