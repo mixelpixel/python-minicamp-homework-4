@@ -57,15 +57,28 @@ def add_movie_function():
 def list_all_movies():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
-    try:
-        cursor.execute('SELECT * FROM films')
-        connection.commit()
-        search_result = jsonify(cursor.fetchall())
-    except:
-        search_result = 'An error occured getting all the film titles'
-    finally:
-        connection.close()
-        return search_result
+    cursor.execute('SELECT * FROM films')
+    search_result = jsonify(cursor.fetchall())
+    connection.close()
+    return search_result
+
+#####################################
+# # Looks like I don't need all this try/except/finally
+# # Also not sure what connection.commit() is for?
+#
+# @app.route('/movies', methods = ['GET'])
+# def list_all_movies():
+#     connection = sqlite3.connect('database.db')
+#     cursor = connection.cursor()
+#     try:
+#         cursor.execute('SELECT * FROM films')
+#         connection.commit()
+#         search_result = jsonify(cursor.fetchall())
+#     except:
+#         search_result = 'An error occured getting all the film titles'
+#     finally:
+#         connection.close()
+#         return search_result
 
 #######################################
 # # While getting an error upon exiting the flask server
@@ -119,6 +132,8 @@ def list_all_movies():
 #         if data:
 #             print(data)
 #             return search_result
+
+
 
 app.run(debug = True)
 # if __name__ == '__main__':
