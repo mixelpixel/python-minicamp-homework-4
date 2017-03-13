@@ -62,6 +62,8 @@ def list_all_movies():
     connection.close()
     return search_result
 
+##### HOW WOULD I MAKE A RETURN TO HOME LINK/ROUTE FROM /movie and /movies ???
+
 #####################################
 # # Looks like I don't need all this try/except/finally
 # # Also not sure what connection.commit() is for?
@@ -134,6 +136,33 @@ def list_all_movies():
 #             print(data)
 #             return search_result
 
+@app.route('/search', methods = ['GET'])
+def title_search():
+    connection  = sqlite3.connect('database.db')
+    print('AAA')
+    cursor      = connection.cursor()
+    print('BBB')
+    # poop = request.form['title']
+    # print(poop)
+    # film_title       = request.form['title']
+    film_title       = request.args.get('title')
+    print('CCC')
+
+    try:
+        print('>>>>>1')
+        cursor.execute('SELECT * FROM films WHERE title=?', (film_title,))
+        print('>>>>>2')
+        # connection.commit()
+        print('>>>>>3')
+        search_result = jsonify(cursor.fetchone())
+        print('>>>>>4')
+    except Exception as e:
+        search_result = str(e) + " What the effing eff?"
+    finally:
+        connection.close()
+        if search_result is None:
+            search_result = 'That movie is not in the database'
+        return search_result
 
 
 app.run(debug = True)
