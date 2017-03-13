@@ -139,28 +139,19 @@ def list_all_movies():
 @app.route('/search', methods = ['GET'])
 def title_search():
     connection  = sqlite3.connect('database.db')
-    print('AAA')
     cursor      = connection.cursor()
-    print('BBB')
-    # poop = request.form['title']
-    # print(poop)
-    # film_title       = request.form['title']
     film_title       = request.args.get('title')
-    print('CCC')
 
     try:
-        print('>>>>>1')
         cursor.execute('SELECT * FROM films WHERE title=?', (film_title,))
-        print('>>>>>2')
-        # connection.commit()
-        print('>>>>>3')
+        none_check = cursor.fetchone()
         search_result = jsonify(cursor.fetchone())
-        print('>>>>>4')
+        print(">>pooop>> " + str(search_result))
     except Exception as e:
         search_result = str(e) + " What the effing eff?"
     finally:
         connection.close()
-        if search_result is None:
+        if none_check is None:
             search_result = 'That movie is not in the database'
         return search_result
 
