@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>THE MOST AWESOMEST WEBPAGE EVER!</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css"></link>
+    <title>THE MOST AWESOMEST WEBPAGE EVER?</title>
     <!-- this keeps the favico-ico error from popping up: -->
     <link rel="shortcut icon" href="#"></link>
   </head>
   <body>
     <img src="/static/ComputerRage.gif">
-    <h1>Movies</h1>
+    <h1 class="header">Movies</h1>
     <form action='{{ url_for("add_movie_function") }}' method='POST'>
     <!-- The above invokes the function & allows for the path to change -->
     <!-- <form action='/movie' method='POST'> -->
@@ -18,9 +19,9 @@
       <input type="submit" value="Submit"></input>
       <input type="reset" value="Reset"></input>
     </form>
-    <a href="/movies">List of all the MOVIES</a>
+    <a id="movie-list" href="/movies">List of all the MOVIES</a>
     <form action="{{ url_for('title_search') }}" method = "GET">
-        <h3>Search</h3>
+        <h3 class="header">Search</h3>
         <input type="text" name="title"></input>
         <input type="submit"></input>
     </form>
